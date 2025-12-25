@@ -21,7 +21,8 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller
 
-      - name: Build (PyInstaller)
+      # Note: combining --onefile with --windowed can create a .app bundle but is not recommended by PyInstaller docs [web:59]
+      - name: Build (onefile)
         run: |
           pyinstaller --onefile --windowed --name white-luminance-greyscale-color-inverter white-luminance-greyscale-color-inverter.py
 

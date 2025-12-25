@@ -21,11 +21,11 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller
 
-      - name: Build (one-file executable)
+      - name: Build (PyInstaller)
         run: |
-          pyinstaller --onefile --name your_app_name main.py
+          pyinstaller --onefile --windowed --name white-luminance-greyscale-color-inverter white-luminance-greyscale-color-inverter.py
 
-      - name: Upload build artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: macos-dist

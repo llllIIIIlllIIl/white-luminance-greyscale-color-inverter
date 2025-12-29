@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libfuse2 file
+        sudo apt-get install -y libfuse2 file imagemagick
     
     - name: Download appimagetool
       run: |
@@ -35,10 +35,14 @@ jobs:
         mkdir -p AppDir/usr/bin
         mkdir -p AppDir/usr/share/applications
         mkdir -p AppDir/usr/share/icons/hicolor/256x256/apps
-        
+    
+    - name: Create placeholder icon
+      run: |
+        convert -size 256x256 xc:blue -pointsize 72 -fill white -gravity center -annotate +0+0 "App" AppDir/yourapp.png
+    
     - name: Create desktop file
       run: |
-        cat > AppDir/app.desktop << 'EOF'
+        cat > AppDir/yourapp.desktop << 'EOF'
         [Desktop Entry]
         Type=Application
         Name=YourApp
